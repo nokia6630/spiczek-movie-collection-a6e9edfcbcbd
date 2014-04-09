@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="clientApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js"></script>
+</head>
+<body ng-controller="clientAppController">
+
+    <h2>Wyslij dane:</h2>
+    <input type="text" ng-model="data">
+    <button ng-click="getData()">Send</button>
+    <br>
+    <h2>Dane z serwera:</h2>
+    <div>{{ resultPane }}</div>
+
+<script>
+    var clientApp = angular.module('clientApp', ['ngRoute', 'clientAppControllers']);
+    var clientAppControllers = angular.module('clientAppControllers', []);
+
+    clientAppControllers.controller('clientAppController', ['$scope', '$http', function($scope, $http) {
+
+        window.scope = $scope;
+        $scope.getData = function() {
+            $http.get('http://localhost:8088/service/greeting/' + $scope.data).
+                    success(function(data) {
+                        $scope.resultPane = data.toString();
+                        alert(data.toString());
+                    });
+        }
+    }]);
+
+</script>
+
+</body>
+</html>
