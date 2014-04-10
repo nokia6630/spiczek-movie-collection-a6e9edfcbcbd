@@ -12,6 +12,7 @@ public class HelloController {
     int x = 1;
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String getGreeting(@PathVariable String name) {
+	int x = 10;
 	return "Hello11 " + name;
     }
 }
