@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @ResponseStatus(HttpStatus.OK)
 public class HelloController {
 
+    int x = 1;
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String getGreeting(@PathVariable String name) {
 	return "Hello11 " + name;
